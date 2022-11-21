@@ -7,5 +7,9 @@ provider:
   runtime: nodejs16.x
 
 functions:
-  hello:
+  backend:
     handler: server.start
+    events: 
+      - http:
+          method: any
+          path: /{any+}
