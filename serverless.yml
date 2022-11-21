@@ -13,7 +13,7 @@ package:
 
 functions:
   backend:
-    handler: ./dist/lambda.handler
+    handler: ./dist/src/lambda.handler
     events: 
       - http:
           method: any
