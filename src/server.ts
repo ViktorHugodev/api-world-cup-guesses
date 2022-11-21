@@ -1,35 +1,9 @@
-import Fastify from 'fastify'
-import cors from '@fastify/cors'
+import { app } from './app'
 
-import { poolRoutes } from './routes/pool'
-import { betsRoutes } from './routes/bets'
-import { usersRoutes } from './routes/users'
-import { authRoutes } from './routes/auth'
-import { gameRoutes } from './routes/game'
-import jwt from '@fastify/jwt'
-
-async function start() {
-  const fastify = Fastify({
-    logger: true
-  })
-
-  await fastify.register(cors, {
-    origin: true
-  })
-  await fastify.register(jwt, {
-    secret: process.env.SECRET_JWT as string
-  })
-  await fastify.register(betsRoutes)
-  await fastify.register(poolRoutes)
-  await fastify.register(authRoutes)
-  await fastify.register(gameRoutes)
-  await fastify.register(usersRoutes)
-
-
+export async function start() {
+  const fastify = await app()
   await fastify.listen({
     port: 3333,
-    host: '0.0.0.0'
+    host: '0.0.0.0',
   })
 }
-
-start()
