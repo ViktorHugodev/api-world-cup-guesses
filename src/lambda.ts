@@ -1,7 +1,7 @@
 import awsLambdaFastify from '@fastify/aws-lambda'
 import { app } from './app'
 // or
-export async function lambda() {
+export async function handler() {
   const fastify = await app()
   fastify.listen({
     port: 3333,
