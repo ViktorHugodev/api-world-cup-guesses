@@ -18,7 +18,7 @@ jobs:
       - name: clone local repository
         uses: actions/checkout@v2
       - name: npm install
-        run: npm install --production
+        run: npm install
 
       - name: build
         run: npm run build  
