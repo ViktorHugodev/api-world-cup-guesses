@@ -17,7 +17,7 @@ async function start() {
     origin: true
   })
   await fastify.register(jwt, {
-    secret: 'COPANLW8'
+    secret: process.env.SECRET_JWT as string
   })
   await fastify.register(betsRoutes)
   await fastify.register(poolRoutes)
