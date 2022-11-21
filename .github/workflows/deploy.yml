@@ -26,6 +26,6 @@ jobs:
       - name: Serverless deploy
         uses: serverless/github-action@v3.1
         with:
-          args: -c "serverless deploy --stage prod"
+          args: -c "serverless plugin install --name serverless-plugin-typescript && serverless plugin install --name serverless-plugin-optimize && serverless deploy --stage prod"
           entrypoint: /bin/sh
 

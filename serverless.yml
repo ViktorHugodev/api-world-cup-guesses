@@ -1,6 +1,10 @@
-service: aws-node # NOTE: update this with your service name
+service: api-world-cup-guesses # NOTE: update this with your service name
 
 frameworkVersion: '3'
+
+plugins:
+    - serverless-plugin-typescript
+    - serverless-plugin-optimize
 
 provider:
   name: aws
