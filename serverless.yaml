@@ -1,7 +1,7 @@
 # https://console.aws.amazon.com/iam/home#/users
 # serverless deploy --aws-profile tr-apieteg
 # serverless deploy --aws-profile tr /prod
-# aws configure --profile tr-apieteg
+# aws configure --profile api-world-cup
 
 service: api-world-cup
 
