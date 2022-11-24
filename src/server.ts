@@ -18,7 +18,7 @@ export async function start() {
     origin: true
   })
   await fastify.register(jwt, {
-    secret: process.env.SECRET_JWT as string
+    secret: 'VINICAO'
   })
   await fastify.register(betsRoutes)
   await fastify.register(poolRoutes)
