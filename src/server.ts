@@ -11,12 +11,7 @@ import jwt from '@fastify/jwt'
 export async function start() {
 
   const fastify = Fastify({
-    logger: true,
-    https:{
-      rejectUnauthorized: false
-    },
-    trustProxy:true,
-
+    logger: true
   })
 
   await fastify.register(cors, {
