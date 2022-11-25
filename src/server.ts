@@ -11,10 +11,16 @@ import jwt from '@fastify/jwt'
 export async function start() {
 
   const fastify = Fastify({
-    logger: true
+    logger: true,
+    https:{
+      rejectUnauthorized: false
+    },
+    trustProxy:true,
+
   })
 
   await fastify.register(cors, {
+
     origin: true
   })
   await fastify.register(jwt, {
@@ -28,7 +34,6 @@ export async function start() {
 
   await fastify.listen({
     port: 3333,
-    host: '0.0.0.0',
   })
 
   return fastify
