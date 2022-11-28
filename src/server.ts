@@ -29,6 +29,7 @@ export async function start() {
 
   await fastify.listen({
     port: 3333,
+    host:'0.0.0.0'
   })
 
   return fastify

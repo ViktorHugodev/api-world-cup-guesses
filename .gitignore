@@ -4,4 +4,5 @@ node_modules
 dist
 .serverless
 aws
-bdpost.pem
+ec2.pem
+ec2.pem:Zone.Identifier
