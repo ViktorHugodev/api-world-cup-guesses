@@ -4,6 +4,9 @@ import { prisma } from '../lib/prisma'
 import { authenticate } from '../middleware/authenticate'
 
 export async function betsRoutes(fastify: FastifyInstance) {
+  fastify.get('/test', () => {
+    return { message: 'success' }
+  })
   fastify.get('/bets/count', async () => {
     const count = await prisma.bets.count()
     return { count }
@@ -52,25 +55,25 @@ export async function betsRoutes(fastify: FastifyInstance) {
     }
 
     const game = await prisma.game.findUnique({
-      where:{
+      where: {
         id: gameId
       }
     })
 
-    if(!game) {
+    if (!game) {
       return response.status(400).send({
         message: 'Game not found'
-      })    
+      })
     }
 
-    if(game.date < new Date()){
+    if (game.date < new Date()) {
       return response.status(400).send({
         message: 'You cannot send a bet after the game'
       })
     }
-    
+
     await prisma.bets.create({
-      data:{
+      data: {
         firstTeamGoals,
         secondTeamGoals,
         gameId,
