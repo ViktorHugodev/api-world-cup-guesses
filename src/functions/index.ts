@@ -20,25 +20,8 @@ export default async function (instance: FastifyInstance, opts: FastifyServerOpt
 
 
     instance.get('/', async (req: FastifyRequest, res: FastifyReply) => {
-        res.status(200).send({
-            hello: 'World'
-        })
-    })
-
-    instance.register(async (instance: FastifyInstance, opts: FastifyServerOptions, done) => {
-
-        instance.get('/', async (req: FastifyRequest<CustomRouteGenericQuery>, res: FastifyReply) => {
-            const { name = '' } = req.query
-            res.status(200).send(`Hello ${name}`)
-        })
-
-        instance.get('/:name', async (req: FastifyRequest<CustomRouteGenericParam>, res: FastifyReply) => {
-            const { name = '' } = req.params
-            res.status(200).send(`Hello ${name}`)
-        })
-        done()
-    }, {
-        prefix: '/hello'
+        return {message: 'hello'}
+     
     })
 
     done()
