@@ -8,7 +8,7 @@ import { authRoutes } from './routes/auth'
 import { gameRoutes } from './routes/game'
 import jwt from '@fastify/jwt'
 
-export async function start() {
+export async function server() {
 
   const fastify = Fastify({
     logger: true
@@ -27,11 +27,10 @@ export async function start() {
   await fastify.register(gameRoutes)
   await fastify.register(usersRoutes)
 
-  await fastify.listen({
-    port: 3333,
-    // host:'0.0.0.0'
-  })
+  // await fastify.listen({
+  //   port: 3333,
+  //   // host:'0.0.0.0'
+  // })
 
   return fastify
 }
-start()
