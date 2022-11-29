@@ -2,7 +2,7 @@
 {
   "rewrites": [
       {
-          "source": "src/(.*)",
+          "source": "/src/(.*)",
           "destination": "/src/api/serverless.ts"
       }
   ]
