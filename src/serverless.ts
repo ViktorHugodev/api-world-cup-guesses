@@ -6,11 +6,13 @@ import Fastify from "fastify";
 
 // Instantiate Fastify with some config
 const app = Fastify({
-  logger: true,
+  logger: false,
 });
 
 // Register your application as a normal plugin.
-app.register(import('./app'));
+app.register(import("./app"), {
+    prefix: '/'
+});
 
 export default async (req, res) => {
     await app.ready();
