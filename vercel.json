@@ -1,0 +1,14 @@
+{
+  "name": "api-world-cup-guesses",
+  "version": 2,
+  "public": true,
+  "build":{
+    "src":"./src/server.ts",
+    "use":"@vercel/node"
+  },
+  "routes":[
+    {
+      "src":"/(.*)"
+    }
+  ]
+}
