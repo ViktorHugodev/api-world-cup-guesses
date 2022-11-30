@@ -23,6 +23,9 @@ const start = async () => {
   app.register(jwt, {
     secret: process.env.SECRET_JWT as string
   })
+  app.register(cors, {
+    origin: true
+  })
   app.register(betsRoutes)
   app.register(poolRoutes)
   app.register(authRoutes)
