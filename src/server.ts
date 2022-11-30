@@ -25,10 +25,8 @@ app.register(poolRoutes)
 app.register(authRoutes)
 app.register(gameRoutes)
 app.register(usersRoutes)
-app
-  .get('/one', function (req, reply) {
-    reply
-      .send({ hello: 'world' })
+app.get('/one',async (req, reply) =>{
+    return {hello: 'world'}
   })
 const start = async () => {
   try {
