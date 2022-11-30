@@ -17,11 +17,6 @@ const app = Fastify({
 })
 const PORT = process.env.PORT || 3333
 
-
-app.register(cors, {
-
-    origin: true
-  })
 app.register(jwt, {
     secret: process.env.SECRET_JWT as string
   })
