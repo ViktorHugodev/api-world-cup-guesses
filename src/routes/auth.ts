@@ -13,6 +13,10 @@ export async function authRoutes(fastify: FastifyInstance){
     return { user: request.user}
   })
 
+  fastify.get('/', async () => {
+    return { message: 'Hello world'}
+  })
+
   fastify.post('/users', async (request) => {
     try {
       const createUserBody = z.object({
