@@ -30,7 +30,11 @@ app.register(poolRoutes)
 app.register(authRoutes)
 app.register(gameRoutes)
 app.register(usersRoutes)
-
+app
+  .get('/one', function (req, reply) {
+    reply
+      .send({ hello: 'world' })
+  })
 const start = async () => {
   try {
       await app.listen({ port: PORT as number });
