@@ -1,3 +1,4 @@
+'use strict'
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -10,31 +11,40 @@ import { usersRoutes } from './routes/users'
 import { authRoutes } from './routes/auth'
 import { gameRoutes } from './routes/game'
 import jwt from '@fastify/jwt'
-export async function server() {
-  const PORT = process.env.PORT || 3333
 
-  const fastify = Fastify({
-    logger: true
-  })
+const app = Fastify({
+  logger: true
+})
+const PORT = process.env.PORT || 3333
 
-  await fastify.register(cors, {
+
+app.register(cors, {
 
     origin: true
   })
-  await fastify.register(jwt, {
+app.register(jwt, {
     secret: process.env.SECRET_JWT as string
   })
-  await fastify.register(betsRoutes)
-  await fastify.register(poolRoutes)
-  await fastify.register(authRoutes)
-  await fastify.register(gameRoutes)
-  await fastify.register(usersRoutes)
+app.register(betsRoutes)
+app.register(poolRoutes)
+app.register(authRoutes)
+app.register(gameRoutes)
+app.register(usersRoutes)
 
-  await fastify.listen({
-    port: PORT as number,
-    host:'0.0.0.0'
-  })
-
-  return fastify
+const start = async () => {
+  try {
+      await app.listen({ port: PORT as number });
+  } catch (err) {
+      app.log.error(err);
+      process.exit(1);
+  }
 }
-server()
+
+start();
+// app.listen({
+//     port: PORT as number,
+//     host:'0.0.0.0'
+//   })
+
+
+
