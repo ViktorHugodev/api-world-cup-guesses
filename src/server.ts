@@ -31,7 +31,7 @@ const start = async () => {
   app.get('/one', async () => {
     return { hello: 'world' }
   })
-  await app.listen({ port: PORT as number });
+  await app.listen({ port: PORT as number, host: '0.0.0.0' });
 }
 
 start();

@@ -28,6 +28,6 @@ const start = async () => {
     app.get('/one', async () => {
         return { hello: 'world' };
     });
-    await app.listen({ port: PORT });
+    await app.listen({ port: PORT, host: '0.0.0.0' });
 };
 start();
