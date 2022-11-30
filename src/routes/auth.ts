@@ -58,10 +58,12 @@ export async function authRoutes(fastify: FastifyInstance){
           }
         })
       }
+      const shortName = user.name.split(' ')[0] + ' ' +  user.name.split(' ')[1]
       const token = fastify.jwt.sign({
         name: user.name,
         avatarUrl: user.avatarUrl,
-        email: user.email
+        email: user.email,
+        shortName
       }, {
         sub:user.id,
         expiresIn: '7 days'
