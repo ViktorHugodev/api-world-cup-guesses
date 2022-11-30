@@ -12,29 +12,26 @@ import { authRoutes } from './routes/auth'
 import { gameRoutes } from './routes/game'
 import jwt from '@fastify/jwt'
 
-const app = Fastify({
-  logger: true
-})
-const PORT = process.env.PORT || 3333
 
-app.register(jwt, {
+const start = async () => {
+
+  const app = Fastify({
+    logger: true
+  })
+  const PORT = process.env.PORT || 3333
+
+  app.register(jwt, {
     secret: process.env.SECRET_JWT as string
   })
-app.register(betsRoutes)
-app.register(poolRoutes)
-app.register(authRoutes)
-app.register(gameRoutes)
-app.register(usersRoutes)
-app.get('/one',async (req, reply) =>{
-    return {hello: 'world'}
+  app.register(betsRoutes)
+  app.register(poolRoutes)
+  app.register(authRoutes)
+  app.register(gameRoutes)
+  app.register(usersRoutes)
+  app.get('/one', async () => {
+    return { hello: 'world' }
   })
-const start = async () => {
-  try {
-      await app.listen({ port: PORT as number });
-  } catch (err) {
-      app.log.error(err);
-      process.exit(1);
-  }
+  await app.listen({ port: PORT as number });
 }
 
 start();

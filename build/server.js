@@ -21,28 +21,22 @@ const users_1 = require("./routes/users");
 const auth_1 = require("./routes/auth");
 const game_1 = require("./routes/game");
 const jwt_1 = __importDefault(require("@fastify/jwt"));
-const app = (0, fastify_1.default)({
-    logger: true
-});
-const PORT = process.env.PORT || 3333;
-app.register(jwt_1.default, {
-    secret: process.env.SECRET_JWT
-});
-app.register(bets_1.betsRoutes);
-app.register(pool_1.poolRoutes);
-app.register(auth_1.authRoutes);
-app.register(game_1.gameRoutes);
-app.register(users_1.usersRoutes);
-app.get('/one', (req, reply) => __awaiter(void 0, void 0, void 0, function* () {
-    return { hello: 'world' };
-}));
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        yield app.listen({ port: PORT });
-    }
-    catch (err) {
-        app.log.error(err);
-        process.exit(1);
-    }
+    const app = (0, fastify_1.default)({
+        logger: true
+    });
+    const PORT = process.env.PORT || 3333;
+    app.register(jwt_1.default, {
+        secret: process.env.SECRET_JWT
+    });
+    app.register(bets_1.betsRoutes);
+    app.register(pool_1.poolRoutes);
+    app.register(auth_1.authRoutes);
+    app.register(game_1.gameRoutes);
+    app.register(users_1.usersRoutes);
+    app.get('/one', () => __awaiter(void 0, void 0, void 0, function* () {
+        return { hello: 'world' };
+    }));
+    yield app.listen({ port: PORT });
 });
 start();
