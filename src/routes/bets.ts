@@ -62,8 +62,9 @@ export async function betsRoutes(fastify: FastifyInstance) {
         message: 'Game not found'
       })    
     }
-
-    if(game.date < new Date()){
+    const fusoHorario = -3
+    const dataAtual = new Date(Date.now() + 3600000 * fusoHorario)
+    if(game.date < dataAtual){
       return response.status(400).send({
         message: 'You cannot send a bet after the game'
       })
