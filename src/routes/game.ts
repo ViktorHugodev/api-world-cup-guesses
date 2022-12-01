@@ -12,7 +12,18 @@ export async function gameRoutes(fastify: FastifyInstance) {
         id: z.string(),
       })
       const { id } = getPoolParams.parse(request.params)
-
+      const allBets =  await prisma.participant.findMany({
+        include:{
+          bets:true,
+          user:true
+          
+        },
+        where:{
+          pool:{
+            id
+          }
+        }
+      })
       const games = await prisma.game.findMany({
         orderBy: {
           date: 'desc',
@@ -21,14 +32,16 @@ export async function gameRoutes(fastify: FastifyInstance) {
           bets: {
             where: {
               participant: {
-                // userId: request.user.sub,
+                userId: request.user.sub,
                 poolId: id,
               },
             },
+          
           },
         },
       })
       return {
+        gameTest: allBets,
         games: games.map(game => {
           return {
             ...game,
