@@ -33,7 +33,7 @@ export async function gameRoutes(fastify: FastifyInstance) {
           return {
             ...game,
             bet: game.bets.length > 0 ? game.bets[0] : null,
-            bets: undefined,
+            bets: game.bets,
           }
         }),
       }
