@@ -12,16 +12,35 @@ export async function gameRoutes(fastify: FastifyInstance) {
         id: z.string(),
       })
       const { id } = getPoolParams.parse(request.params)
-      const allBets =  await prisma.participant.findMany({
+      const allGames2 = await prisma.game.findMany({
+
         include:{
-          bets:true,
-          user:true
-          
-        },
+          bets:{
+            include:{
+              participant:{
+                include:{
+                  pool:true,
+                  user: true
+                }
+              }
+            }
+          },
+
+        }
+      })
+      const allBets =  await prisma.pool.findUnique({
         where:{
-          pool:{
-            id
-          }
+          id
+        },
+        include: {
+          
+          participants: {
+            include:{
+              bets:true,
+              user:true
+            }
+          },
+
         }
       })
       const games = await prisma.game.findMany({
@@ -41,6 +60,7 @@ export async function gameRoutes(fastify: FastifyInstance) {
         },
       })
       return {
+        gamesAll: allGames2,
         gameTest: allBets,
         games: games.map(game => {
           return {
