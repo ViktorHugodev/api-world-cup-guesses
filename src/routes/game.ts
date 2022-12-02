@@ -20,15 +20,12 @@ export async function gameRoutes(fastify: FastifyInstance) {
 
           bets: {
             include:{
-              participant:true,
-              game:true
+              game:true,
+              
             },
             where: {
               gameId:id,
-              participant: {
-
-                poolId: id,
-              },
+              
             },
           
           },

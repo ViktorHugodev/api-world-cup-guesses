@@ -141,14 +141,18 @@ export async function poolRoutes(fastify: FastifyInstance) {
       include: {
         _count: {
           select: {
-            participants: true
+            participants: true,
+          
           }
         },
         participants: {
+
           select: {
+            bets:true,
             id: true,
             user: {
               select: {
+                name:true,
                 avatarUrl: true
               }
             }
